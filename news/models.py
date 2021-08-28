@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Author(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     picture = models.ImageField(height_field=None, width_field=None)
 
     class Meta:
@@ -14,7 +14,7 @@ class Author(models.Model):
 
 
 class Article(models.Model):
-    author = models.ForeignKey(Author, related_name='author', on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, related_name='articles', on_delete=models.CASCADE)
     category = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
     summary = models.TextField(default='')
