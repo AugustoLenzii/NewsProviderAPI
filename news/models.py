@@ -2,8 +2,8 @@ from django.db import models
 
 
 class Author(models.Model):
-    name = models.CharField(max_length=255, unique=True)
-    picture = models.ImageField(height_field=None, width_field=None)
+    name = models.CharField(max_length=255, unique=False)
+    picture = models.ImageField(height_field=None, width_field=None, default='blank')
 
     class Meta:
         verbose_name = 'Author'

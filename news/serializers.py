@@ -14,7 +14,6 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 
 class ArticleSerializer(serializers.ModelSerializer):
-    author = AuthorSerializer(many=False, read_only=True)
 
     class Meta:
         model = Article
@@ -28,7 +27,6 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 
 class ArticleLoggedSerializer(serializers.ModelSerializer):
-    author = AuthorSerializer(many=False, read_only=True)
 
     class Meta:
         model = Article
@@ -44,7 +42,6 @@ class ArticleLoggedSerializer(serializers.ModelSerializer):
 
 
 class ArticleAnonSerializer(serializers.ModelSerializer):
-    author = AuthorSerializer(many=False, read_only=True)
 
     class Meta:
         model = Article
