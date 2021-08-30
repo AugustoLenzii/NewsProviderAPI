@@ -18,6 +18,8 @@ class Article(models.Model):
     category = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
     summary = models.TextField(default='')
+    firstparagraph = models.CharField(max_length=255, default='')
+    body = models.TextField(max_length=255, default='')
 
     class Meta:
         verbose_name = 'Article'
@@ -25,5 +27,3 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
-
-

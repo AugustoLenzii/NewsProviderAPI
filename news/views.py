@@ -1,14 +1,19 @@
-from .models import Article, Author
-from .serializers import AuthorSerializer, ArticleSerializer
+from django.contrib.auth.models import AnonymousUser
+from rest_framework import generics
 
-from rest_framework import viewsets
-
-
-class AuthorViewSet(viewsets.ModelViewSet):
-    queryset = Author.objects.all()
-    serializer_class = AuthorSerializer
+from .models import Article
+from .serializers import ArticleSerializer, ArticleLoggedSerializer, ArticleAnonSerializer
 
 
-class ArticleViewSet(viewsets.ModelViewSet):
+class ArticleAPIView(generics.ListAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
+
+
+class AticleDetailAPIView(generics.RetrieveAPIView):
+    queryset = Article.objects.all()
+
+    def get_serializer_class(self):
+        if isinstance(self.request.user, AnonymousUser):
+            return ArticleAnonSerializer
+        return ArticleLoggedSerializer
