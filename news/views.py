@@ -1,8 +1,12 @@
-from django.contrib.auth.models import AnonymousUser
+from django.contrib.auth.models import AnonymousUser, User
 from rest_framework import generics, permissions
 
 from .models import Article, Author
-from .serializers import ArticleSerializer, ArticleLoggedSerializer, ArticleAnonSerializer, AuthorSerializer
+from .serializers import (ArticleSerializer,
+                          ArticleLoggedSerializer,
+                          ArticleAnonSerializer,
+                          AuthorSerializer,
+                          UserSerializer,)
 
 
 class ArticleAPIView(generics.ListAPIView):
@@ -41,3 +45,9 @@ class AuthorRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAdminUser,)
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
+
+
+class UserRegisterAPIView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_field = "username"

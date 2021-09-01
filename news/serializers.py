@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from django.contrib.auth.models import User
+
 from .models import Author, Article
 
 
@@ -14,6 +16,7 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 
 class ArticleSerializer(serializers.ModelSerializer):
+    author = AuthorSerializer()
 
     class Meta:
         model = Article
@@ -27,6 +30,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 
 class ArticleLoggedSerializer(serializers.ModelSerializer):
+    author = AuthorSerializer()
 
     class Meta:
         model = Article
@@ -42,6 +46,7 @@ class ArticleLoggedSerializer(serializers.ModelSerializer):
 
 
 class ArticleAnonSerializer(serializers.ModelSerializer):
+    author = AuthorSerializer()
 
     class Meta:
         model = Article
@@ -53,3 +58,16 @@ class ArticleAnonSerializer(serializers.ModelSerializer):
             'summary',
             'firstparagraph',
         )
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ("username", "password")
+
+    def create(self, validated_data):
+        user = super(UserSerializer, self).create(validated_data)
+        user.set_password(validated_data["password"])
+        user.save()
+        return user
