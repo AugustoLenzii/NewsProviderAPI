@@ -1,5 +1,5 @@
 # Instructions and documentation
-## Documentation -> []() 
+## Documentation -> [Here](https://app.swaggerhub.com/apis-docs/augustolenzi/NewsProviderAPI/1.0.0) 
 ## Running for development
 ### 1- Clone this repository
 ```
