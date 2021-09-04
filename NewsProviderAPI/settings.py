@@ -71,7 +71,7 @@ DATABASES = {
         'NAME': "challenge",
         'PASSWORD': 'challenge',
         'POSTGRES_DB': "challenge",
-        'HOST': 'db',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
