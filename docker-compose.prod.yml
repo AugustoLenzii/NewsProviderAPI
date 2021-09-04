@@ -4,7 +4,7 @@ services:
     build: .
     command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; gunicorn --bind 0.0.0.0:8000 NewsProviderAPI.wsgi'
     ports:
-      - 80:80
+      - 8000:8000
     environment:
       PRODUCTION: 'true'
   db:
