@@ -27,3 +27,28 @@ python manage.py runserver
 http://localhost:8000/api/
 ```
 ## Running for Production
+### 1- Clone this repository
+```
+git clone https://github.com/AugustoLenzii/NewsProviderAPI.git
+```
+### 2- Cd into _NewsProviderAPI_ and install the requirements
+```
+cd NewsProviderAPI
+pip install -r requirements.txt
+```
+### 3- Change the DATABASE settings so the HOST look like this
+```
+'HOST': 'db'
+```
+### 4- Start the container
+```
+docker-compose -f docker-compose.prod.yml up -d
+```
+### 5- Migrate the models
+```
+docker container exec newsproviderapi_web_1 python /core/manage.py migrate
+```
+### 6- Open any REST app to send requests to it
+```
+http://<server address>:8000/api/
+```
