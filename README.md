@@ -36,7 +36,10 @@ git clone https://github.com/AugustoLenzii/NewsProviderAPI.git
 cd NewsProviderAPI
 pip install -r requirements.txt
 ```
-### 3- Change the DATABASE settings so the HOST look like this
+### 3- Turn Debug off and change the DATABASE settings so the HOST look like this
+```
+DEBUG = False
+```
 ```
 'HOST': 'db'
 ```
